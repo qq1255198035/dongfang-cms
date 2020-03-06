@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Table } from 'antd';
-import $axios from '../../axios/$axios';
+import axios from 'axios';
 
 class TableBasic extends Component {
 	state = {
@@ -56,7 +56,7 @@ class TableBasic extends Component {
 	};
 	fetch = () => {
 		this.setState({ loading: true });
-		$axios({
+		axios({
 			url: 'https://randomuser.me/api?results=10',
 			method: 'get',
 			type: 'json'

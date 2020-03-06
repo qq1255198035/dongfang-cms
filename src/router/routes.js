@@ -1,4 +1,5 @@
 import Dashboard from '../views/dashboard/Index';
+import AddItem from '../views/dashboard/AddItem';
 import Icon from '../views/icon/Index';
 import Error404 from '../views/error/Error404';
 import Error500 from '../views/error/Error500';
@@ -25,6 +26,7 @@ import About from '../views/about/About';
 
 export const routes = [
 	{ path: '/dashboard', component: Dashboard },
+	{ path: '/add/:id?', component: AddItem },
 	{ path: '/icon', component: Icon },
 	{ path: '/form/basic', component: BasicForm },
 	{ path: '/form/editor', component: Editor },

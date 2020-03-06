@@ -4,7 +4,8 @@ import { Form, Icon, Input, Button } from 'antd';
 import { connect } from 'react-redux';
 import { setUserInfo } from '@/redux/actions/userInfo';
 import '@/assets/css/login';
-
+import { notification  } from 'antd';
+import { login } from '@/api'
 const FormItem = Form.Item;
 class Login extends Component {
 	state = { clientHeight: document.documentElement.clientHeight || document.body.clientHeight };
@@ -17,10 +18,26 @@ class Login extends Component {
 		this.props.form.validateFields((err, values) => {
 			if (!err) {
 				localStorage.setItem('isLogin', '1');
+				let params = {username: values.userName,password: values.password};
+				console.log(params);
 				// 模拟生成一些数据
-				this.props.setUserInfo(Object.assign({}, values, { role: { type: 1, name: '超级管理员' } }));
-				localStorage.setItem('userInfo', JSON.stringify(Object.assign({}, values, { role: { type: 1, name: '超级管理员' } })));
-				this.props.history.push('/dashboard');
+				login(params).then(res => {
+					console.log(res)
+					if(res.code === 200){
+						this.props.setUserInfo(Object.assign({}, values, { role: { type: 1, name: '超级管理员' } }));
+						localStorage.setItem('token',res.result.token);
+						localStorage.setItem('userInfo', JSON.stringify(Object.assign({}, values, { role: { type: 1, name: '超级管理员' } })));
+						this.props.history.push('/dashboard');
+					}else{
+						notification.error({
+							duration: 3,
+							message: '登录失败',
+							description: '用户名或密码输入错误，请重新输入！'
+						});
+					}
+				})
+				
+				//
 			} else {
 				console.log(err);
 			}
@@ -72,7 +89,7 @@ class Login extends Component {
 							<Button type="primary" htmlType="submit" block onClick={this.login}>
 								登录
 							</Button>
-							<div style={{ color: '#999',paddingTop:'10px',textAlign:'center' }}>Tips : 输入任意用户名密码即可</div>
+							<div style={{ color: '#999',paddingTop:'10px',textAlign:'center' }}>用户名、密码admin</div>
 						</FormItem>
 					</Form>
 				</div>
