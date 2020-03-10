@@ -1,12 +1,12 @@
 import axios from "axios";
 import { Component } from "react";
+import { Modal } from 'antd'
 
-
-
+const token = localStorage.getItem('token');
 // 请求前拦截
 axios.interceptors.request.use(
     config => {
-        const token = localStorage.getItem('token');
+        
         //console.log(token)
         if (token){
             config.headers[ 'X-Access-Token' ] = token // 让每个请求携带自定义 token 请根据实际情况自行修改
@@ -32,13 +32,24 @@ axios.interceptors.response.use(
         return data.data;
     },
     err => {
-        // if (err.response.status === 504 || err.response.status === 404) {
-        // console.log("服务器被吃了⊙﹏⊙∥");
-        // } else if (err.response.status === 401) {
-        // console.log("登录信息失效⊙﹏⊙∥");
-        // } else if (err.response.status === 500) {
-        // console.log("服务器开小差了⊙﹏⊙∥");
-        // }
+        if (err.response.status === 504 || err.response.status === 404) {
+        console.log("服务器被吃了⊙﹏⊙∥");
+        } else if (err.response.status === 401) {
+        console.log("登录信息失效⊙﹏⊙∥");
+        } else if (err.response.status === 500) {
+            Modal.error({
+                title: '警告',
+                content: '对不起，您的登录已过期，请重新登录！',
+                okText: '确定',
+                onOk: () => {
+                    window.localStorage.removeItem('token');
+                    window.localStorage.removeItem('userInfo');
+                    window.localStorage.removeItem('isLogin');
+                    window.location.replace('/')
+                }
+            })
+            
+        }
         console.log(err)
         return Promise.reject(err);
     }
