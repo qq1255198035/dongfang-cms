@@ -55,3 +55,79 @@ export function deleteItem(id){
         data: qs.stringify({id})
     })
 }
+
+export function queryMessage(id){
+    return axios({
+        method: 'post',
+        url: baseUrl + '/dongfangPlayerData/queryById',
+        data: qs.stringify({id})
+    })
+}
+
+export function addMessage(params){
+    return axios({
+        method: 'post',
+        url: baseUrl + '/dongfangPlayerData/add',
+        headers: {
+            'Content-Type': 'application/json;charset-UTF-8'
+        },
+        data: JSON.stringify(params)
+    })
+}
+
+export function addUnionMessage(params){
+    return axios({
+        method: 'post',
+        url: baseUrl + '/dongfangPlayerData/edit',
+        headers: {
+            'Content-Type': 'application/json;charset-UTF-8'
+        },
+        data: JSON.stringify(params)
+    })
+}
+
+export function queryUnionMessage(id){
+    return axios({
+        method: 'post',
+        url: baseUrl + '/dongfangAvgData/queryById',
+        data: qs.stringify({id})
+    })
+}
+
+export function queryPointsAMessage(id){
+    return axios({
+        method: 'post',
+        url: baseUrl + '/dongfangAthleteData/queryByPlayerId',
+        data: qs.stringify({id})
+    })
+}
+
+export function queryPointsBMessage(id){
+    return axios({
+        method: 'post',
+        url: baseUrl + '/dongfangAthleteBeforeData/queryByPlayerId',
+        data: qs.stringify({id})
+    })
+}
+
+export function postPointsAMessage(params){
+    return axios({
+        method: 'post',
+        url: baseUrl + '/dongfangAthleteData/add',
+        headers: {
+            'Content-Type': 'application/json;charset-UTF-8'
+        },
+        data: JSON.stringify(params)
+    })
+}
+
+export function postPointsBMessage(params){
+    return axios({
+        method: 'post',
+        url: baseUrl + '/dongfangAthleteBeforeData/add',
+        headers: {
+            'Content-Type': 'application/json;charset-UTF-8'
+        },
+        data: JSON.stringify(params)
+    })
+}

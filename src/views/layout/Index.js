@@ -16,7 +16,7 @@ class Index extends Component {
 					<Layout>
 						<TopHeader />
 						{breadCrumb.show ? <BreadCrumb /> : null}
-						<MainContent />
+						<MainContent style={{height: '100%'}}/>
 					</Layout>
 				</Layout>
 			</div>

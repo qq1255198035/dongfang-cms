@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Table, Divider, Form} from 'antd';
+import { Button, Table, Divider } from 'antd';
 import './Home.scss';
 export default class DataForm extends Component{
     constructor(props){

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Table, Divider,Input, Form, Avatar,message } from 'antd';
+import { Button, Table, Input, Form, Avatar, message, Menu, Dropdown, Icon} from 'antd';
 import { withRouter } from 'react-router-dom'
 import { queryPageList,deleteItem } from '@/api'
 import './Home.scss';
 const Item = Form.Item
+
 
 class Home extends Component{
     constructor(props){
@@ -91,19 +92,20 @@ class Home extends Component{
                     key: 'action',
                     align: 'center',
                     render: (text, record) => (
-                        <span>
-                            <a onClick={this.goAdd.bind(this,text.id)}>编辑</a>
-                                <Divider type="vertical" />
-                            <a onClick={this.postDelete.bind(this,text.id)}>删除</a>
-                        </span>
+                        <Dropdown overlay={this.renderMenu.bind(this,text.id)} placement="bottomCenter">
+                            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                                操作<Icon type="down" />
+                            </a>
+                        </Dropdown>
                     ),
                 },
             ]
         };
     }
-    componentWillMount(){
+    componentDidMount(){
         this.getData('',1)
     }
+    
     getData = (name,pageNo) => {
         queryPageList(name,pageNo).then(res => {
             console.log(res)
@@ -123,6 +125,11 @@ class Home extends Component{
             pagination: pagination
         })
     }
+
+  
+    showModal = (id) => {
+        this.props.history.push({pathname:"/data/" + id});
+    };
     handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
@@ -141,6 +148,27 @@ class Home extends Component{
                 this.getData(this.state.name,this.state.pagination.current)
             }
         })
+    }
+    renderMenu = (id) => {
+        return (
+                <Menu>
+                    <Menu.Item>
+                        <a onClick={this.goAdd.bind(this,id)} rel="noopener noreferrer">编辑</a> 
+                    </Menu.Item>
+                    <Menu.Item>
+                        <a onClick={this.postDelete.bind(this,id)} rel="noopener noreferrer">删除</a>
+                    </Menu.Item>
+                    <Menu.Item>
+                        <a target="_blank" rel="noopener noreferrer" onClick={this.showModal.bind(this,id)}>详情</a>
+                    </Menu.Item>
+                    <Menu.Item>
+                        <a target="_blank" rel="noopener noreferrer" onClick={this.checkPoints.bind(this,id)}>命中区域</a>
+                    </Menu.Item>
+                </Menu>
+            );
+    }
+    checkPoints = (id) => {
+        this.props.history.push({pathname:"/points/" + id});
     }
     goAdd = (id) =>　{
         this.props.history.push({pathname:"/add/" + id});
@@ -172,4 +200,5 @@ class Home extends Component{
     }
 }
 const WrappedApp = Form.create()(Home);
+
 export default withRouter(WrappedApp);
