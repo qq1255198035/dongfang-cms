@@ -51,55 +51,91 @@ class EditableTable extends Component {
     constructor(props) {
         super(props);
         this.state = { editingKey: ''};
-        this.columns = [
+        this.columns = this.columns = [
             {
-                title: '区域一',
-                dataIndex: 'area1',
+                title: '场数',
+                dataIndex: 'games',
                 editable: true
             },
             {
-                title: '区域二',
-                dataIndex: 'amount1',
+                title: '先发',
+                dataIndex: 'start',
                 editable: true
             },
             {
-                title: '区域三',
-                dataIndex: 'succeed1',
+                title: '分钟',
+                dataIndex: 'minute',
                 editable: true
             },
             {
-                title: '区域四',
-                dataIndex: 'avgArea1',
+                title: '命中率',
+                dataIndex: 'hitRate',
                 editable: true
             },
             {
-                title: '区域五',
-                dataIndex: 'avgAmount1',
+                title: '三分',
+                dataIndex: 'threePointer',
                 editable: true
             },
             {
-                title: '区域六',
-                dataIndex: 'avgSucceed1',
+                title: '二分',
+                dataIndex: 'twoPointer',
                 editable: true
             },
             {
-                title: '区域七',
-                dataIndex: 'area2',
+                title: '罚球',
+                dataIndex: 'freeThrow',
                 editable: true
             },
             {
-                title: '区域八',
-                dataIndex: 'amount2',
+                title: '总分',
+                dataIndex: 'allPointer',
                 editable: true
             },
             {
-                title: '区域九',
-                dataIndex: 'succeed2',
+                title: '进攻',
+                dataIndex: 'attack',
                 editable: true
             },
             {
-                title: '区域十',
-                dataIndex: 'avgArea2',
+                title: '防守',
+                dataIndex: 'guard',
+                editable: true
+            },
+            {
+                title: '失误',
+                dataIndex: 'fault',
+                editable: true
+            },
+            {
+                title: '场均篮板',
+                dataIndex: 'avgBackboard',
+                editable: true
+            },
+            {
+                title: '场均抢断',
+                dataIndex: 'avgSteal',
+                editable: true
+            },
+            {
+                title: '场均盖帽',
+                dataIndex: 'avgBlockShot',
+                editable: true
+            },
+            
+            {
+                title: '犯规',
+                dataIndex: 'foul',
+                editable: true
+            },
+            {
+                title: '场均得分',
+                dataIndex: 'avgScore',
+                editable: true
+            },
+            {
+                title: '场均助攻',
+                dataIndex: 'avgAssist',
                 editable: true
             },
             {
@@ -160,13 +196,16 @@ class EditableTable extends Component {
                 this.setState({ editingKey: '' });
             }
             
-            this.props.setData(newData)
+            this.props.setMyData(newData)
         });
     }
 
     edit(key) {
+        console.log(key)
         this.setState({ editingKey: key });
     }
+
+    
 
     render() {
         const components = {

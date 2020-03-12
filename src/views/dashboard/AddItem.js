@@ -155,7 +155,7 @@ class AddItem extends Component{
                             <Item label="弹跳">
                                 {getFieldDecorator('bounce', {rules: [
                                 { required: false}],
-                                })(<InputNumber />)}
+                                })(<InputNumber max="100" />)}
                             </Item>
                             <Item label="体重">
                                 {getFieldDecorator('weight', {rules: [
@@ -180,7 +180,7 @@ class AddItem extends Component{
                             <Item label="进攻">
                                 {getFieldDecorator('attack', {rules: [
                                 { required: false}],
-                                })(<InputNumber />)}
+                                })(<InputNumber max="100" />)}
                             </Item>
                             <Item label="选秀">
                                 {getFieldDecorator('draft', {rules: [
@@ -190,7 +190,7 @@ class AddItem extends Component{
                             <Item label="技能">
                                 {getFieldDecorator('skill', {rules: [
                                 { required: false}],
-                                })(<InputNumber />)}
+                                })(<InputNumber max="100" />)}
                             </Item>
                             <Item label="身高">
                                 {getFieldDecorator('stature', {rules: [
@@ -200,12 +200,12 @@ class AddItem extends Component{
                             <Item label="体力">
                                 {getFieldDecorator('power', {rules: [
                                 { required: false}],
-                                })(<InputNumber />)}
+                                })(<InputNumber max="100" />)}
                             </Item>
                             <Item label="敏捷">
                                 {getFieldDecorator('agility', {rules: [
                                 { required: false}],
-                                })(<InputNumber />)}
+                                })(<InputNumber max="100" />)}
                             </Item>
                         </Col>
                         <Col span={12}>

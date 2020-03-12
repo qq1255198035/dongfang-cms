@@ -9,12 +9,12 @@
 export const menus = [
 	{
 		path: '/dashboard',
-		title: '首页',
+		title: '球员数据管理',
 		icon: 'home'
 	},
 	{
 		path: '/uniondata',
-		title:　'联盟平均数据',
+		title:　'联盟数据管理',
 		icon: 'file'
 	}
 	// {

@@ -159,10 +159,10 @@ class Home extends Component{
                         <a onClick={this.postDelete.bind(this,id)} rel="noopener noreferrer">删除</a>
                     </Menu.Item>
                     <Menu.Item>
-                        <a target="_blank" rel="noopener noreferrer" onClick={this.showModal.bind(this,id)}>详情</a>
+                        <a target="_blank" rel="noopener noreferrer" onClick={this.showModal.bind(this,id)}>个人数据</a>
                     </Menu.Item>
                     <Menu.Item>
-                        <a target="_blank" rel="noopener noreferrer" onClick={this.checkPoints.bind(this,id)}>命中区域</a>
+                        <a target="_blank" rel="noopener noreferrer" onClick={this.checkPoints.bind(this,id)}>投篮表现</a>
                     </Menu.Item>
                 </Menu>
             );
